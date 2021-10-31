@@ -29,10 +29,12 @@
 
 <div class="event-reminder">
     <div class="event-reminder-head">
-        Set a check back reminder:<!--br />
+        Set a check back reminder:
+        <!--br />
         Event Date.getDate(): {eventDate_value.getDate()}<br />
         Event Date: {eventDate_value}<br />-->
-        <br />Reminder Date: {reminderDate_value}
+        <!--br />
+        Reminder Date: {reminderDate_value}-->
     </div>
     <div class="date-setters">
         <ReminderDatePicker />
@@ -42,6 +44,10 @@
 </div>
 
 <style>
+    .event-reminder-head {
+        font-size: 25px;
+    }
+
     .event-reminder {
         width: 100%;
     }

@@ -1,6 +1,6 @@
 <div class="event-image">
     <div class="image-container">
-        <img src="images/photo-1560801122-b59974a71aca.jpeg" />
+        <img src="images/photo-1560801122-b59974a71aca.jpeg" alt="Impressionen von einem Konzert" />
     </div>
 </div>
 

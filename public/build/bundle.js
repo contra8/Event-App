@@ -7251,16 +7251,12 @@ var app = (function () {
     function create_fragment$c(ctx) {
     	let div2;
     	let div0;
-    	let t0;
-    	let br;
     	let t1;
-    	let t2;
-    	let t3;
     	let div1;
     	let reminderdatepicker;
-    	let t4;
+    	let t2;
     	let remindertimesetter;
-    	let t5;
+    	let t3;
     	let reminderdateswitcher;
     	let current;
     	reminderdatepicker = new ReminderDatePicker({ $$inline: true });
@@ -7271,23 +7267,19 @@ var app = (function () {
     		c: function create() {
     			div2 = element("div");
     			div0 = element("div");
-    			t0 = text("Set a check back reminder:\r\n        ");
-    			br = element("br");
-    			t1 = text("Reminder Date: ");
-    			t2 = text(/*reminderDate_value*/ ctx[0]);
-    			t3 = space();
+    			div0.textContent = "Set a check back reminder:";
+    			t1 = space();
     			div1 = element("div");
     			create_component(reminderdatepicker.$$.fragment);
-    			t4 = space();
+    			t2 = space();
     			create_component(remindertimesetter.$$.fragment);
-    			t5 = space();
+    			t3 = space();
     			create_component(reminderdateswitcher.$$.fragment);
-    			add_location(br, file$c, 34, 8, 1098);
-    			attr_dev(div0, "class", "event-reminder-head");
+    			attr_dev(div0, "class", "event-reminder-head svelte-15e8iwf");
     			add_location(div0, file$c, 30, 4, 897);
-    			attr_dev(div1, "class", "date-setters svelte-1s8x4fo");
-    			add_location(div1, file$c, 36, 4, 1157);
-    			attr_dev(div2, "class", "event-reminder svelte-1s8x4fo");
+    			attr_dev(div1, "class", "date-setters svelte-15e8iwf");
+    			add_location(div1, file$c, 38, 4, 1183);
+    			attr_dev(div2, "class", "event-reminder svelte-15e8iwf");
     			add_location(div2, file$c, 29, 0, 863);
     		},
     		l: function claim(nodes) {
@@ -7296,22 +7288,16 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
-    			append_dev(div0, t0);
-    			append_dev(div0, br);
-    			append_dev(div0, t1);
-    			append_dev(div0, t2);
-    			append_dev(div2, t3);
+    			append_dev(div2, t1);
     			append_dev(div2, div1);
     			mount_component(reminderdatepicker, div1, null);
-    			append_dev(div1, t4);
+    			append_dev(div1, t2);
     			mount_component(remindertimesetter, div1, null);
-    			append_dev(div1, t5);
+    			append_dev(div1, t3);
     			mount_component(reminderdateswitcher, div1, null);
     			current = true;
     		},
-    		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*reminderDate_value*/ 1) set_data_dev(t2, /*reminderDate_value*/ ctx[0]);
-    		},
+    		p: noop,
     		i: function intro(local) {
     			if (current) return;
     			transition_in(reminderdatepicker.$$.fragment, local);
@@ -7356,7 +7342,7 @@ var app = (function () {
     	});
 
     	reminderDate.subscribe(value => {
-    		$$invalidate(0, reminderDate_value = value);
+    		reminderDate_value = value;
     	});
 
     	onMount(async () => {
@@ -7385,7 +7371,7 @@ var app = (function () {
 
     	$$self.$inject_state = $$props => {
     		if ('eventDate_value' in $$props) eventDate_value = $$props.eventDate_value;
-    		if ('reminderDate_value' in $$props) $$invalidate(0, reminderDate_value = $$props.reminderDate_value);
+    		if ('reminderDate_value' in $$props) reminderDate_value = $$props.reminderDate_value;
     		if ('eventDateString' in $$props) eventDateString = $$props.eventDateString;
     	};
 
@@ -7393,7 +7379,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [reminderDate_value];
+    	return [];
     }
 
     class EventReminder extends SvelteComponentDev {
@@ -7495,9 +7481,9 @@ var app = (function () {
     			div1.textContent = "top-event";
     			attr_dev(div0, "class", "event-title");
     			add_location(div0, file$a, 1, 4, 41);
-    			attr_dev(div1, "class", "top-event svelte-6cnflq");
+    			attr_dev(div1, "class", "top-event svelte-1ce93qa");
     			add_location(div1, file$a, 4, 4, 112);
-    			attr_dev(div2, "class", "event-title-container svelte-6cnflq");
+    			attr_dev(div2, "class", "event-title-container svelte-1ce93qa");
     			add_location(div2, file$a, 0, 0, 0);
     		},
     		l: function claim(nodes) {
@@ -7565,7 +7551,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			div.textContent = "The stones roll through Europe this winter - The Rolling Stones will play at the Letzigrund stadium on Friday, Dec 17 2021. On their “On Fire” tour, they will also make a stop in Zurich at the beginning of the winter... A heater and ticket prices are not yet known. We will inform you here and on social media. So check back from time to time.";
-    			attr_dev(div, "class", "event-text");
+    			attr_dev(div, "class", "event-text svelte-1pacf1l");
     			add_location(div, file$9, 0, 0, 0);
     		},
     		l: function claim(nodes) {
@@ -7639,13 +7625,13 @@ var app = (function () {
     			t1 = space();
     			div1 = element("div");
     			t2 = text(/*eventDateString*/ ctx[0]);
-    			attr_dev(div0, "class", "event-date-header svelte-4x2jib");
+    			attr_dev(div0, "class", "event-date-header svelte-1kbc7z1");
     			add_location(div0, file$8, 29, 8, 854);
-    			attr_dev(div1, "class", "date svelte-4x2jib");
+    			attr_dev(div1, "class", "date svelte-1kbc7z1");
     			add_location(div1, file$8, 32, 8, 935);
-    			attr_dev(div2, "class", "text-container svelte-4x2jib");
+    			attr_dev(div2, "class", "text-container svelte-1kbc7z1");
     			add_location(div2, file$8, 28, 4, 816);
-    			attr_dev(div3, "class", "event-date svelte-4x2jib");
+    			attr_dev(div3, "class", "event-date svelte-1kbc7z1");
     			add_location(div3, file$8, 27, 0, 786);
     		},
     		l: function claim(nodes) {
@@ -7863,6 +7849,7 @@ var app = (function () {
     			div0 = element("div");
     			img = element("img");
     			if (!src_url_equal(img.src, img_src_value = "images/photo-1560801122-b59974a71aca.jpeg")) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "Impressionen von einem Konzert");
     			attr_dev(img, "class", "svelte-xnse8i");
     			add_location(img, file$6, 2, 8, 70);
     			attr_dev(div0, "class", "image-container svelte-xnse8i");
@@ -8033,9 +8020,9 @@ var app = (function () {
     			hr = element("hr");
     			t1 = space();
     			create_component(eventreminder.$$.fragment);
-    			attr_dev(hr, "class", "svelte-10xfdew");
+    			attr_dev(hr, "class", "svelte-1w1cck8");
     			add_location(hr, file$4, 7, 4, 204);
-    			attr_dev(div, "class", "event-container svelte-10xfdew");
+    			attr_dev(div, "class", "event-container svelte-1w1cck8");
     			add_location(div, file$4, 5, 0, 143);
     		},
     		l: function claim(nodes) {

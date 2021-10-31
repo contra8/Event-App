@@ -48,22 +48,25 @@
         bottom: 0;
     }
 
+    .event-date-header {
+        margin-bottom: 10px;
+    }
+
     .event-date-header:before {
-        /* content: url("img/clock.png"); */
         background-image: url('../images/clock-icon.png');
         background-size: 25px 25px;
         display: inline-block;
-        width: 50px;
-        height: 10px;
+        width: 35px;
+        height: 25px;
         content:"";
         position: relative;
-        top: 0px;
+        top: 5px;
         left: 0px;
         background-repeat: no-repeat;
     }
 
     .text-container {
-        padding-top: 30px;
+        padding-top: 25px;
         padding-left: 36px;
     }
 

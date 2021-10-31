@@ -17,6 +17,7 @@
         color: #000000;
         display: flex;
         flex-direction: row;
+        margin-bottom: 30px;
     }
 
     .top-event {

@@ -13,6 +13,8 @@
     hr {
         width: 856px;
         border: 1px solid #E1E1E1;
+        margin-top: 90px;
+        margin-bottom: 90px;
     }
 
     .event-container {
