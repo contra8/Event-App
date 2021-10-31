@@ -26,6 +26,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
     }
 
     .title {
@@ -42,7 +43,13 @@
         line-height: 23px;
         height: 23px;
         /* identical to box height */
+        color: #000000;
+    }
 
-
-        color: #000000;    }
+    .title:before {
+        content: url("img/thumb-up.svg");
+        position: absolute;
+        top: -2px;
+        left: -40px;
+    }
 </style>

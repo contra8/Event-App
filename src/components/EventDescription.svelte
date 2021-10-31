@@ -12,5 +12,6 @@
     .event-description {
         display: flex;
         flex-direction: row;
+        height: 467px;
     }
 </style>
