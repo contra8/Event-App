@@ -50,7 +50,7 @@
 
     .event-date-header:before {
         /* content: url("img/clock.png"); */
-        background-image: url('img/clockIcon.png');
+        background-image: url('../images/clock-icon.png');
         background-size: 25px 25px;
         display: inline-block;
         width: 50px;

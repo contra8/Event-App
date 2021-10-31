@@ -47,7 +47,7 @@
     }
 
     .title:before {
-        content: url("img/thumb-up.svg");
+        content: url("../images/thumb-up-icon.svg");
         position: absolute;
         top: -2px;
         left: -40px;

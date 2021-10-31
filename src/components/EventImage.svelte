@@ -1,6 +1,6 @@
 <div class="event-image">
     <div class="image-container">
-        <img src="img/photo-1560801122-b59974a71aca.jpeg" />
+        <img src="images/photo-1560801122-b59974a71aca.jpeg" />
     </div>
 </div>
 
