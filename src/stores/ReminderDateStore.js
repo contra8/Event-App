@@ -1,3 +1,6 @@
 import { writable } from 'svelte/store';
+import dayjs from 'dayjs';
 
-export const reminderDate = writable(new Date());
+const initialReminderPeriod = 5;
+
+export const reminderDate = writable(dayjs().add(initialReminderPeriod, 'day').add(1, 'hour').toDate());

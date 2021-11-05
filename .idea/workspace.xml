@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="278e1894-d0c2-45d6-a542-d1f158d0be99" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/clock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/clock.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/clockIcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/clockIcon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/photo-1560801122-b59974a71aca.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/photo-1560801122-b59974a71aca.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/thumb-up.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/thumb-up.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Content.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Content.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/bundle.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/bundle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/build/bundle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/build/bundle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EventDate.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventDate.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EventDescription.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventDescription.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EventImage.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventImage.svelte" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/EventReminder.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventReminder.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EventText.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventText.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/EventTitle.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventTitle.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReminderDateSwitcher.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReminderTimeSetter.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReminderTimeSetter.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/EventDateStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/EventDateStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stores/ReminderDateStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stores/ReminderDateStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +33,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -65,10 +66,24 @@
       <option name="presentableId" value="Default" />
       <updated>1635673982485</updated>
       <workItem from="1635673984123" duration="7081000" />
+      <workItem from="1635695118814" duration="10323000" />
+      <workItem from="1636139282221" duration="7120000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

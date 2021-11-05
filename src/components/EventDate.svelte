@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { eventDate } from '../stores/EventDateStore.js';
+    import dayjs from "dayjs";
 
     let eventDate_value;
     let eventDateString;
@@ -10,17 +11,18 @@
     });
 
     onMount(async () => {
-        eventDateString = eventDate_value.toString().split(' ')[0]
+        let eventDate = dayjs(eventDate_value).toDate(); // convert dayjs date to JS Date Object
+        eventDateString = eventDate.toString().split(' ')[0]
             + " "
-            + eventDate_value.getDate()
+            + eventDate.getDate()
             + ". "
-            + eventDate_value.toLocaleString('default', { month: 'short' })
+            + eventDate.toLocaleString('default', { month: 'short' })
             + " | "
-            + eventDate_value.getHours()
+            + eventDate.getHours()
             + ":"
-            + eventDate_value.toString().split(":")[1]
+            + eventDate.toString().split(":")[1]
             + " "
-            + eventDate_value.toLocaleString('en-US', { hour: 'numeric', hour12: true }).split(" ")[1];
+            + eventDate.toLocaleString('en-US', { hour: 'numeric', hour12: true }).split(" ")[1];
     });
 
 </script>

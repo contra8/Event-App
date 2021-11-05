@@ -5,7 +5,8 @@
     import ReminderTimeSetter from "./ReminderTimeSetter.svelte";
     import { eventDate } from '../stores/EventDateStore.js';
     import { reminderDate } from '../stores/ReminderDateStore.js';
-    import ReminderDateSwitcher from "./ReminderDateSwitcher.svelte";
+    import ReminderDaySwitcher from "./ReminderDaySwitcher.svelte";
+    import dayjs from "dayjs";
 
     let eventDate_value;
     let reminderDate_value;
@@ -20,9 +21,8 @@
     });
 
     onMount(async () => {
-        let initialReminderDate = eventDate_value;
-        initialReminderDate.setDate(initialReminderDate.getDate() - 5);
-        reminderDate.set(initialReminderDate);
+        const inFiveDays = dayjs().add(5, 'day').toDate();
+        //reminderDate.set(inFiveDays);
     });
 
 </script>
@@ -37,15 +37,37 @@
         Reminder Date: {reminderDate_value}-->
     </div>
     <div class="date-setters">
-        <ReminderDatePicker />
-        <ReminderTimeSetter />
-        <ReminderDateSwitcher />
+        <ReminderDatePicker id="reminder-date-picker" />
+        <ReminderTimeSetter id="reminder-time-setter" />
+        <ReminderDaySwitcher id="reminder-day-switcher" />
     </div>
+    <div class="e-mail-input">
+        Enter your email
+    </div>
+    <button>
+        Submit
+    </button>
 </div>
 
 <style>
+
+    #reminder-date-picker {
+        color: red;
+    }
+
+    button {
+        width: 100%;
+        height: 80px;
+        color: white;
+        background: #6800ED;
+        border-radius: 5px;
+    }
+
     .event-reminder-head {
         font-size: 25px;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 1;
     }
 
     .event-reminder {
