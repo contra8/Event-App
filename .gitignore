@@ -1,1 +1,10 @@
+.idea
+.DS_Store
+.nyc_output
+.vscode
+.cache
 node_modules
+logs
+dist
+public/bundle.*
+public/build
