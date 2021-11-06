@@ -8,7 +8,9 @@
     let eventDate_value;
     let reminderDate_value;
     let eventDateString;
-    
+
+    const tomorrow = dayjs().add(1, 'day').toDate();
+
     const today = dayjs().toDate();
     $: remainingDays = dayjs(reminderDate_value).diff(today, 'day');
 
