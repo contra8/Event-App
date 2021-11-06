@@ -19,9 +19,6 @@
 	:global(div.reminder-element) {
 		background-color: #F1F2F6;
 		border-radius: 5px;
-		/*
-		margin-left: 10px;
-		*/
 		height: 80px;
 	}
 
