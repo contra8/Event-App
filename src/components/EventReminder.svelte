@@ -8,6 +8,16 @@
 
     let store;
 
+    const theme = {
+        calendar: {
+            colors: {
+                background: {
+                    highlight: '#6800ED'
+                }
+            }
+        }
+    }
+
     let eventDate_value;
     let reminderDate_value;
     // $: reminderDate_value = store;
@@ -58,31 +68,34 @@
         <br />
         Reminder Date: {reminderDate_value}
     </div>
-    <div class="date-setters">
-        <div class="date-picker-container reminder-element">
-            <!--InlineCalendar bind:store /-->
-            <Datepicker
-                format="DD.MM.YYYY"
-                start={tomorrow}
-                end={dayjs(eventDate_value).subtract(1, 'day')}
-                selected={reminderDate_value}
-                bind:store />
+    <div class="date-reminder-flex-container">
+        <div class="date-setters">
+            <div class="date-picker-container reminder-element">
+                <!--InlineCalendar bind:store /-->
+                <Datepicker
+                    format="DD.MM.YYYY"
+                    start={tomorrow}
+                    end={dayjs(eventDate_value).subtract(1, 'day')}
+                    selected={reminderDate_value}
+                    bind:store
+                    {theme} />
+            </div>
+            <div class="reminder-time-switcher reminder-element">
+                <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
+            </div>
+            <div class="reminder-day-switcher reminder-element">
+                <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button>
+                in {remainingDays} Days
+                <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
+            </div>
         </div>
-        <div class="reminder-time-switcher reminder-element">
-            <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
-        </div>
-        <div class="reminder-day-switcher reminder-element">
-            <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button>
-            in {remainingDays} Days
-            <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
-        </div>
+        <!--div class="email-input"-->
+            <input class="email-input" type="text" value="Enter your email" />
+        <!--/div-->
+        <button class="submit-button">
+            Submit
+        </button>
     </div>
-    <!--div class="email-input"-->
-        <input class="email-input" type="text" value="Enter your email" />
-    <!--/div-->
-    <button class="submit-button">
-        Submit
-    </button>
 </div>
 
 <style>
@@ -107,6 +120,13 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+    }
+
+    .date-reminder-flex-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .event-reminder-head {
@@ -160,4 +180,5 @@
     @media only screen and (max-width: 768px) {
 
     }
+
 </style>
