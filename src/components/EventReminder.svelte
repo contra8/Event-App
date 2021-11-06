@@ -12,9 +12,15 @@
         calendar: {
             colors: {
                 background: {
+                    primary: '#F1F2F6',
                     highlight: '#6800ED'
-                }
-            }
+                },
+                text: {
+                    primary: '#FF0000',
+                    highlight: '#FFFF00'
+                },
+                shadow: '0px 0px 0px 0px rgba(1, 1, 1, 1)'
+            },
         }
     }
 
@@ -68,7 +74,7 @@
         <br />
         Reminder Date: {reminderDate_value}
     </div>
-    <div class="date-reminder-flex-container">
+    <div class="date-reminder-grid-container">
         <div class="date-setters">
             <div class="date-picker-container reminder-element">
                 <!--InlineCalendar bind:store /-->
@@ -84,14 +90,17 @@
                 <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
             </div>
             <div class="reminder-day-switcher reminder-element">
-                <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button>
-                in {remainingDays} Days
-                <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
+                <div class="reminder-day-switcher-elements-container">
+                    <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button>
+                    in {remainingDays} Days
+                    <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
+                </div>
             </div>
         </div>
-        <!--div class="email-input"-->
+        <div class="email-input-container">
             <input class="email-input" type="text" value="Enter your email" />
-        <!--/div-->
+            <span class="chars-counter">50</span>
+        </div>
         <button class="submit-button">
             Submit
         </button>
@@ -123,11 +132,11 @@
         flex-direction: column;
     }
 
-    .date-reminder-flex-container {
+    .date-reminder-grid-container {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
+        display: grid;
+        grid-template-rows: auto;
+        row-gap: 20px;
     }
 
     .event-reminder-head {
@@ -141,28 +150,28 @@
         width: 100%;
         height: 80px;
         margin: 0px;
-        gap: 20px;
-    }
-
-    @media only screen and (max-width: 640px) {
-        .date-setters {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-            margin: 0px;
-            color: red;
-            gap: 20px;
-        }
+        gap: 10px;
     }
 
     .date-picker-container {
-        align-items: center;
+        height: 80px;
     }
 
     .reminder-element {
+        /*
         flex: 1;
         margin-left: 0px;
+
+         */
+    }
+
+    .email-input-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 80px;
+        color: #888888;
+        background: #F1F2F6;
     }
 
     .email-input {
@@ -177,6 +186,10 @@
         margin-bottom: 0px;
     }
 
+    .chars-counter {
+        padding: 30px;
+    }
+
     .day-switcher-button {
         background: #FFFFFF;
         color: #000000;
@@ -188,8 +201,55 @@
         margin: 0px;
     }
 
+    .reminder-day-switcher-elements-container {
+        min-width: 150px;
+        margin-left: auto;
+        margin-right: auto;    }
+
     .reminder-day-switcher {
-        padding: 26px;
+        margin: 0 auto;
     }
 
+    .reminder-time-switcher {
+        flex: 1;
+    }
+
+    .reminder-time-switcher > input {
+        margin-left: 100px;
+        margin-right: auto;
+        width: 100px;
+        color: green;
+    }
+
+    @media only screen and (max-width: 700px) {
+        .date-setters {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            color: green;
+            gap: 20px;
+        }
+
+        .date-picker-container {
+            width: 100%;
+            margin: 0px;
+            height: 80px;
+        }
+
+        .reminder-time-switcher {
+            width: 100%;
+            margin: 0px;
+            flex: unset;
+            height: 80px;
+        }
+
+        .reminder-day-switcher {
+            width: 100%;
+            margin: 0px;
+            height: 80px;
+            padding: 0px;
+        }
+    }
 </style>
