@@ -41,7 +41,7 @@
         console.log("afterUpdate 1: reminderDate_value = " + reminderDate_value);
         console.log("afterUpdate 2: $store?.selected = " + $store?.selected);
         //reminderDate.set(dayjs($store?.selected));
-        reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
+        //reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
         console.log("afterUpdate 3: reminderDate_value = " + reminderDate_value);
     });
 
@@ -142,6 +142,17 @@
         margin: 0px;
     }
 
+    @media only screen and (max-width: 640px) {
+        .date-setters {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            color: red;
+        }
+    }
+
     .date-picker-container {
         align-items: center;
     }
@@ -160,6 +171,7 @@
         border: none;
         font-size: 18px;
         padding-left: 30px;
+        margin-bottom: -10px;
     }
 
     .day-switcher-button {
@@ -175,10 +187,6 @@
 
     .reminder-day-switcher {
         padding: 26px;
-    }
-
-    @media only screen and (max-width: 768px) {
-
     }
 
 </style>
