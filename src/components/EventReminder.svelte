@@ -8,10 +8,7 @@
     let eventDate_value;
     let reminderDate_value;
     let eventDateString;
-    //let remainingDays;
-
-    const tomorrow = dayjs().add(1, 'day').toDate();
-
+    
     const today = dayjs().toDate();
     $: remainingDays = dayjs(reminderDate_value).diff(today, 'day');
 
@@ -25,7 +22,6 @@
 
     function onClickDecreaseButton() {
         const newDateOfRemindingCandidate = dayjs(reminderDate_value).subtract(1, 'day');
-        console.log(dayjs(newDateOfRemindingCandidate).diff(today, 'day'));
         if (dayjs(newDateOfRemindingCandidate).diff(today, 'day') >= 1) // FUN FACT: Would work even without the ">=1" as 0 or negative numbers equal the Bool false.
             reminderDate.set(dayjs(reminderDate_value).subtract(1, 'day'));
     }
