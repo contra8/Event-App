@@ -1,12 +1,16 @@
 <script>
-    import { onMount } from 'svelte';
+    import { afterUpdate } from 'svelte';
     import dayjs from "dayjs";
     import { Datepicker } from 'svelte-calendar';
+    import { InlineCalendar } from 'svelte-calendar';
     import { eventDate } from '../stores/EventDateStore.js';
     import { reminderDate } from '../stores/ReminderDateStore.js';
 
+    let store;
+
     let eventDate_value;
     let reminderDate_value;
+    // $: reminderDate_value = store;
     let eventDateString;
 
     const tomorrow = dayjs().add(1, 'day').toDate();
@@ -20,6 +24,15 @@
 
     reminderDate.subscribe(value => {
         reminderDate_value = value;
+    });
+
+    afterUpdate(() => {
+        console.log("------------");
+        console.log("afterUpdate 1: reminderDate_value = " + reminderDate_value);
+        console.log("afterUpdate 2: $store?.selected = " + $store?.selected);
+        //reminderDate.set(dayjs($store?.selected));
+        reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
+        console.log("afterUpdate 3: reminderDate_value = " + reminderDate_value);
     });
 
     function onClickDecreaseButton() {
@@ -37,16 +50,23 @@
 
 <div class="event-reminder">
     <div class="event-reminder-head">
-        Set a check back reminder:
+        Set a check back reminder:<br />
+        Store date: {$store?.selected}
         <!--br />
         Event Date.getDate(): {eventDate_value.getDate()}<br />
         Event Date: {eventDate_value}<br />-->
-        <!--br />
-        Reminder Date: {reminderDate_value}-->
+        <br />
+        Reminder Date: {reminderDate_value}
     </div>
     <div class="date-setters">
         <div class="date-picker-container reminder-element">
-            <Datepicker format="DD.MM.YYYY" start={tomorrow} selected={reminderDate_value} />
+            <!--InlineCalendar bind:store /-->
+            <Datepicker
+                format="DD.MM.YYYY"
+                start={tomorrow}
+                end={dayjs(eventDate_value).subtract(1, 'day')}
+                selected={reminderDate_value}
+                bind:store />
         </div>
         <div class="reminder-time-switcher reminder-element">
             <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
@@ -57,15 +77,18 @@
             <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
         </div>
     </div>
-    <div class="e-mail-input">
-        Enter your email
-    </div>
+    <!--div class="email-input"-->
+        <input class="email-input" type="text" value="Enter your email" />
+    <!--/div-->
     <button class="submit-button">
         Submit
     </button>
 </div>
 
 <style>
+    button {
+        cursor: pointer;
+    }
 
     input {
         background-color: #F1F2F6;
@@ -93,9 +116,10 @@
     .date-setters {
         display: flex;
         flex-direction: row;
-        align-items: stretch;
         flex-wrap: wrap;
         width: 100%;
+        height: 80px;
+        margin: 0px;
     }
 
     .date-picker-container {
@@ -104,5 +128,36 @@
 
     .reminder-element {
         flex: 1;
+        margin-left: 0px;
+    }
+
+    .email-input {
+        font-weight: 300;
+        width: 100%;
+        height: 80px;
+        color: #888888;
+        background: #F1F2F6;
+        border: none;
+        font-size: 18px;
+        padding-left: 30px;
+    }
+
+    .day-switcher-button {
+        background: #FFFFFF;
+        color: #000000;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        font-size: 1.5em;
+        border: none;
+        margin: 0px;
+    }
+
+    .reminder-day-switcher {
+        padding: 26px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
     }
 </style>

@@ -17,17 +17,18 @@
         color: #000000;
         display: flex;
         flex-direction: row;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .top-event {
+        height: 20px;
+        margin-left: 10px;
+        margin-top: 5px;
+        padding: 5px 15px 5px 15px;
         background: #6800ED;
         border-radius: 10px;
         color: #FFFFFF;
-        padding: 5px 10px 5px 10px;
         font-size: 14px;
         line-height: 19.6px;
-        height: 30px;
-        margin-right: 50px;
     }
 </style>

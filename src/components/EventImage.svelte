@@ -8,9 +8,12 @@
 
     .event-image {
         width: 50%;
+        width: 310px;
         height: 100%;
         overflow: hidden;
         position: relative;
+        position: absolute;
+        right: 0px;
     }
 
     .image-container {

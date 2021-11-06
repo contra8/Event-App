@@ -4,14 +4,17 @@
 </script>
 
 <div class="event-container">
-    <EventDescription />
+    <div class="event-description-container">
+        <EventDescription />
+    </div>
     <hr />
     <EventReminder />
 </div>
 
 <style>
     hr {
-        width: 856px;
+        max-width: 856px;
+        width: 100%;
         border: 1px solid #E1E1E1;
         margin-top: 90px;
         margin-bottom: 90px;
