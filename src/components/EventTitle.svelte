@@ -24,11 +24,22 @@
         height: 20px;
         margin-left: 10px;
         margin-top: 5px;
-        padding: 5px 15px 5px 15px;
+        padding: 8px 15px 5px 15px;
         background: #6800ED;
         border-radius: 10px;
         color: #FFFFFF;
         font-size: 14px;
         line-height: 19.6px;
+    }
+
+    @media only screen and (max-width: 420px) {
+        .top-event {
+            height: 40px;
+        }
+        .event-title-container {
+            line-height: 100%;
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
     }
 </style>
