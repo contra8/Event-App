@@ -23,22 +23,18 @@
         reminderDate_value = value;
     });
 
-    onMount(async () => {
-        const inFiveDays = dayjs().add(5, 'day').toDate();
-        //const today = dayjs().toDate();
-        //remainingDays = dayjs(reminderDate_value).diff(today, 'day');
-        //reminderDate.set(inFiveDays);
-    });
-
     function onClickDecreaseButton() {
-        console.log("onClickDecreaseButton meldet");
-        const daysTillReminding = dayjs(reminderDate_value).subtract(1, 'day');
-        console.log("daysTillReminding = " + daysTillReminding);
-        if (daysTillReminding >= 1) ;
-        if (dayjs(daysTillReminding).diff(today, 'day'))
+        const newDateOfRemindingCandidate = dayjs(reminderDate_value).subtract(1, 'day');
+        console.log(dayjs(newDateOfRemindingCandidate).diff(today, 'day'));
+        if (dayjs(newDateOfRemindingCandidate).diff(today, 'day') >= 1) // FUN FACT: Would work even without the ">=1" as 0 or negative numbers equal the Bool false.
             reminderDate.set(dayjs(reminderDate_value).subtract(1, 'day'));
     }
 
+    function onClickIncreaseButton() {
+        const newDateOfRemindingCandidate = dayjs(reminderDate_value).add(1, 'day');
+        if (dayjs(eventDate_value).diff(newDateOfRemindingCandidate, 'day'))
+            reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
+    }
 </script>
 
 <div class="event-reminder">
@@ -51,9 +47,6 @@
         Reminder Date: {reminderDate_value}-->
     </div>
     <div class="date-setters">
-        <!--ReminderDatePicker />
-        <ReminderTimeSetter />
-        <ReminderDaySwitcher /-->
         <div class="date-picker-container reminder-element">
             <Datepicker format="DD.MM.YYYY" start={tomorrow} selected={reminderDate_value} />
         </div>
@@ -61,9 +54,9 @@
             <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
         </div>
         <div class="reminder-day-switcher reminder-element">
-            <!--{today}<br />
-            {reminderDate_value}<br /-->
-            <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button> in {remainingDays} Days <button>+</button>
+            <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button>
+            in {remainingDays} Days
+            <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
         </div>
     </div>
     <div class="e-mail-input">
@@ -113,9 +106,5 @@
 
     .reminder-element {
         flex: 1;
-    }
-
-    .reminder-time-switcher {
-
     }
 </style>
