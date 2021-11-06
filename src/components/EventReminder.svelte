@@ -114,6 +114,7 @@
         color: white;
         background: #6800ED;
         border-radius: 5px;
+        margin-top: -5px;
     }
 
     .event-reminder {
@@ -126,7 +127,7 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
     }
 
     .event-reminder-head {
@@ -140,6 +141,7 @@
         width: 100%;
         height: 80px;
         margin: 0px;
+        gap: 20px;
     }
 
     @media only screen and (max-width: 640px) {
@@ -150,6 +152,7 @@
             height: 100%;
             margin: 0px;
             color: red;
+            gap: 20px;
         }
     }
 
@@ -171,7 +174,7 @@
         border: none;
         font-size: 18px;
         padding-left: 30px;
-        margin-bottom: -10px;
+        margin-bottom: 0px;
     }
 
     .day-switcher-button {
