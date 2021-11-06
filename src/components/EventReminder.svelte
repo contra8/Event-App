@@ -7,6 +7,7 @@
     import { reminderDate } from '../stores/ReminderDateStore.js';
 
     let store;
+    let buttonClicked = false;
 
     const theme = {
         calendar: {
@@ -46,18 +47,24 @@
         console.log("------------");
         console.log("afterUpdate 1: reminderDate_value = " + reminderDate_value);
         console.log("afterUpdate 2: $store?.selected = " + $store?.selected);
-        //reminderDate.set(dayjs($store?.selected));
+        if (!buttonClicked)
+            reminderDate.set(dayjs($store?.selected));
+        else
+            buttonClicked = false;
         //reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
+        //remainingDays = dayjs(reminderDate_value).diff(today, 'day');
         console.log("afterUpdate 3: reminderDate_value = " + reminderDate_value);
     });
 
     function onClickDecreaseButton() {
+        buttonClicked = true;
         const newDateOfRemindingCandidate = dayjs(reminderDate_value).subtract(1, 'day');
         if (dayjs(newDateOfRemindingCandidate).diff(today, 'day') >= 1) // FUN FACT: Would work even without the ">=1" as 0 or negative numbers equal the Bool false.
             reminderDate.set(dayjs(reminderDate_value).subtract(1, 'day'));
     }
 
     function onClickIncreaseButton() {
+        buttonClicked = true;
         const newDateOfRemindingCandidate = dayjs(reminderDate_value).add(1, 'day');
         if (dayjs(eventDate_value).diff(newDateOfRemindingCandidate, 'day'))
             reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
@@ -68,11 +75,11 @@
     <div class="event-reminder-head">
         Set a check back reminder:<!--br />
         Store date: {$store?.selected}-->
-        <!--br />
-        Event Date.getDate(): {eventDate_value.getDate()}<br />
-        Event Date: {eventDate_value}<br />-->
-        <!--br />
-        Reminder Date: {reminderDate_value}-->
+        <br />
+        {eventDate_value}<br />
+        <!--Event Date: {eventDate_value}<br />-->
+        <!--br /-->
+        {reminderDate_value}
     </div>
     <div class="date-reminder-grid-container">
         <div class="date-setters">
