@@ -66,25 +66,27 @@
 
 <div class="event-reminder">
     <div class="event-reminder-head">
-        Set a check back reminder:<br />
-        Store date: {$store?.selected}
+        Set a check back reminder:<!--br />
+        Store date: {$store?.selected}-->
         <!--br />
         Event Date.getDate(): {eventDate_value.getDate()}<br />
         Event Date: {eventDate_value}<br />-->
-        <br />
-        Reminder Date: {reminderDate_value}
+        <!--br />
+        Reminder Date: {reminderDate_value}-->
     </div>
     <div class="date-reminder-grid-container">
         <div class="date-setters">
             <div class="date-picker-container reminder-element">
                 <!--InlineCalendar bind:store /-->
-                <Datepicker
-                    format="DD.MM.YYYY"
-                    start={tomorrow}
-                    end={dayjs(eventDate_value).subtract(1, 'day')}
-                    selected={reminderDate_value}
-                    bind:store
-                    {theme} />
+                <div class="date-picker-wrapper">
+                    <Datepicker
+                        format="DD.MM.YYYY"
+                        start={tomorrow}
+                        end={dayjs(eventDate_value).subtract(1, 'day')}
+                        selected={reminderDate_value}
+                        bind:store
+                        {theme} />
+                    </div>
             </div>
             <div class="reminder-time-switcher reminder-element">
                 <div class="input-container">
@@ -143,6 +145,7 @@
 
     .event-reminder-head {
         font-size: 25px;
+        margin-bottom: 30px;
     }
 
     .date-setters {
@@ -157,6 +160,12 @@
 
     .date-picker-container {
         height: 80px;
+    }
+
+    .date-picker-wrapper {
+        width: 200px;
+        margin: 0 auto;
+        margin-top: 20px;
     }
 
     .reminder-element {
@@ -195,18 +204,19 @@
     .day-switcher-button {
         background: #FFFFFF;
         color: #000000;
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         font-size: 1.5em;
         border: none;
-        margin: 0px;
     }
 
     .reminder-day-switcher-elements-container {
-        min-width: 150px;
+        width: 200px;
         margin-left: auto;
-        margin-right: auto;    }
+        margin-right: auto;
+        margin-top: 20px
+    }
 
     .reminder-day-switcher {
         margin: 0 auto;
@@ -228,14 +238,13 @@
         margin: 0 auto;
     }
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 740px) {
         .date-setters {
             display: flex;
             flex-direction: column;
             width: 100%;
             height: 100%;
             margin: 0px;
-            color: green;
             gap: 20px;
         }
 
