@@ -10,16 +10,16 @@
 
     const theme = {
         calendar: {
+            shadow: '0px 0px 0px 0px rgba(1, 1, 1, 1)',
             colors: {
                 background: {
                     primary: '#F1F2F6',
                     highlight: '#6800ED'
                 },
                 text: {
-                    primary: '#FF0000',
-                    highlight: '#FFFF00'
+                    primary: '#000000',
+                    highlight: '#FFFFF'
                 },
-                shadow: '0px 0px 0px 0px rgba(1, 1, 1, 1)'
             },
         }
     }
@@ -87,7 +87,9 @@
                     {theme} />
             </div>
             <div class="reminder-time-switcher reminder-element">
-                <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
+                <div class="input-container">
+                    <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
+                </div>
             </div>
             <div class="reminder-day-switcher reminder-element">
                 <div class="reminder-day-switcher-elements-container">
@@ -214,11 +216,16 @@
         flex: 1;
     }
 
-    .reminder-time-switcher > input {
-        margin-left: 100px;
-        margin-right: auto;
-        width: 100px;
-        color: green;
+    .reminder-time-switcher input {
+        border: none;
+        text-align: center;
+        /*padding-top: 30px;*/
+        margin-top: 23px;
+    }
+
+    .input-container {
+        width: 50%;
+        margin: 0 auto;
     }
 
     @media only screen and (max-width: 700px) {
