@@ -274,6 +274,7 @@
         font-size: 18px;
         padding-left: 30px;
         margin-bottom: 0px;
+        outline: none;
     }
 
     .chars-counter {
