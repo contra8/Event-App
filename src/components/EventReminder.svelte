@@ -12,6 +12,7 @@
     let timeOfDayInputHint;
     let emailInput;
     let submitButton;
+    let datePicker;
 
     let timeOfDayInputIsValid = true;
     let emailInputIsValid = false;
@@ -131,7 +132,14 @@
                         end={dayjs(eventDate_value).subtract(1, 'day')}
                         selected={reminderDate_value}
                         bind:store
-                        {theme} >
+                        {theme}
+                        let:key
+                        let:send
+                        let:receive>
+                        <button class="choose-date-button" in:receive|local={{ key }} out:send|local={{ key }} format="DD.MM.YYYY">
+                            <span>{dayjs(reminderDate_value).format("DD.MM.YYYY")}</span>
+                            <img src="images/calendar-icon.png" />
+                        </button>
                     </Datepicker>
                     </div>
             </div>
@@ -199,9 +207,10 @@
     }
 
     .date-picker-wrapper {
-        width: 200px;
+        width: 100%;
         margin: 0 auto;
         margin-top: 20px;
+        padding-left: 10px;
     }
 
     .email-input-container {
@@ -284,6 +293,40 @@
         width: 120px;
         text-align: center;
     }
+
+    .choose-date-button {
+        font-size: 20px;
+        border: unset;
+        width: 100%;
+        margin-top: 3px;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .choose-date-button span {
+
+    }
+
+    .choose-date-button img {
+        height: 15px;
+    }
+
+    /*
+    .date-picker-wrapper:after {
+        background-image: url('../images/calendar-icon.png');
+        background-size: 15px 15px;
+        display: inline-block;
+        width: 35px;
+        height: 25px;
+        content: "";
+        position: relative;
+        top: 10px;
+        left: 0px;
+        background-repeat: no-repeat;
+    }
+    */
 
     .submit-button {
         width: 100%;
