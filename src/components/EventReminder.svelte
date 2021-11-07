@@ -144,7 +144,7 @@
             <div class="reminder-day-switcher reminder-element">
                 <div class="reminder-day-switcher-elements-container">
                     <button class="day-switcher-button" on:click={onClickDecreaseButton}>-</button>
-                    in {remainingDays} Days
+                    <span class="remaining-days-text-span">in {remainingDays} Days</span>
                     <button class="day-switcher-button" on:click={onClickIncreaseButton}>+</button>
                 </div>
             </div>
@@ -238,13 +238,18 @@
         border-radius: 50%;
         font-size: 1.5em;
         border: none;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     .reminder-day-switcher-elements-container {
-        width: 200px;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 20px
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
     }
 
     .reminder-day-switcher {
@@ -258,6 +263,12 @@
         margin-top: 23px;
         width: 100%;
         outline: none;
+    }
+
+    .remaining-days-text-span {
+        font-size: 20px;
+        flex: 1;
+        padding-top: 12px;
     }
 
     .input-container {
@@ -277,8 +288,7 @@
     .submit-button {
         width: 100%;
         height: 80px;
-        color: #888888
-    ;
+        color: #888888;
         border-radius: 5px;
         margin-top: -5px;
         background: #F1F2F6;
