@@ -9,6 +9,7 @@
     let store;
     let buttonClicked = false;
     let timeOfDayInput;
+    let timeOfDayInputHint;
 
     const theme = {
         calendar: {
@@ -84,17 +85,19 @@
 
     function validateTimeOfDayInput() {
         console.log(timeOfDayInput.value);
-        let timeOfDayIsValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])/.test(timeOfDayInput.value);
+        let timeOfDayIsValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/.test(timeOfDayInput.value);
 
         if (timeOfDayIsValid) {
             //timeOfDayInput.style.backgroundColor = '#bfa';
             timeOfDayInput.style.backgroundColor = '#F1F2F6';
             timeOfDayInput.style.color = '#000000';
+            timeOfDayInputHint.style.display = 'none';
         } else {
             //timeOfDayInput.style.backgroundColor = '#fba';
             timeOfDayInput.style.backgroundColor = '#FF0000';
             timeOfDayInput.style.color = '#FFFFFF';
             console.log("test");
+            timeOfDayInputHint.style.display = 'inline';
         }
         return timeOfDayIsValid;
     }
@@ -156,6 +159,7 @@
             <div class="reminder-time-switcher reminder-element">
                 <div class="input-container">
                     <input bind:this={timeOfDayInput} on:input={onTimeOfDayInputChange} on:change={onTimeOfDayInputChange} value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
+                    <span bind:this={timeOfDayInputHint} class="time-of-day-format-hint">Zeitformat: hh:mm, z. B. 14:30</span>
                 </div>
             </div>
             <div class="reminder-day-switcher reminder-element">
@@ -309,6 +313,13 @@
     .input-container {
         width: 50%;
         margin: 0 auto;
+    }
+
+    .time-of-day-format-hint {
+        display: none;
+        font-size: 14px;
+        position: relative;
+        top: -60px;
     }
 
     @media only screen and (max-width: 740px) {
