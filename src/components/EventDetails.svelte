@@ -14,7 +14,6 @@
 
 <style>
     .event-details {
-        /*width: 50%;*/
         height: 100%;
         line-height: 26px;
         position: relative;

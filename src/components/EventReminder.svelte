@@ -39,7 +39,6 @@
     let eventDateString;
 
     const tomorrow = dayjs().add(1, 'day').toDate();
-
     const today = dayjs().toDate();
     $: remainingDays = dayjs(reminderDate_value).diff(today, 'day');
 
@@ -277,13 +276,15 @@
     .submit-button {
         width: 100%;
         height: 80px;
-        color: white;
+        color: #888888
+    ;
         border-radius: 5px;
         margin-top: -5px;
         background: #F1F2F6;
     }
 
     .submit-button.active {
+        color: #FFFFFF;
         background: #6800ED;
         cursor: pointer;
     }

@@ -4,16 +4,6 @@
 
 <style>
     .header {
-        /*
-        width: 100%;
-        height: 23px;
-        margin: 0;
-        padding-top: 30px;
-        padding-bottom: 42px;
-        -webkit-box-shadow: inset 0px 5px 15px 5px #000000;
-        box-shadow: inset 0px 5px 15px 5px #000000;
-        */
-        /*position: absolute;*/
         width: 100%;
         height: 95px;
         left: 0px;

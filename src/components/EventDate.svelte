@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
-    import { eventDate } from '../stores/EventDateStore.js';
     import dayjs from "dayjs";
+    import { eventDate } from '../stores/EventDateStore.js';
 
     let eventDate_value;
     let eventDateString;
