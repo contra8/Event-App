@@ -94,8 +94,9 @@
     }
 
     function validateEmailInput() {
-        console.log("validateEmailInput startet");
-        emailInputIsValid =  (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput.value));
+        const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        emailInputIsValid = regex.test(String(emailInput.value).toLowerCase());
+
         checkIfInputsAreValid();
     }
 
@@ -149,7 +150,7 @@
             </div>
         </div>
         <div class="email-input-container">
-            <input bind:this={emailInput} on:keypress={validateEmailInput} class="email-input" type="text" placeholder="{callForAction}" />
+            <input bind:this={emailInput} on:keyup={validateEmailInput} class="email-input" type="text" placeholder="{callForAction}" />
             <span class="chars-counter">50</span>
         </div>
         <button bind:this={submitButton} class="submit-button" class:active="{inputsAreValid}" type="button" on:click={onSubmitButtonClick} disabled>
