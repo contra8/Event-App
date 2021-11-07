@@ -36,7 +36,6 @@
 
     let eventDate_value;
     let reminderDate_value;
-    // $: reminderDate_value = store;
     let eventDateString;
 
     const tomorrow = dayjs().add(1, 'day').toDate();
@@ -81,10 +80,7 @@
     }
 
     function validateTimeOfDayInput() {
-        console.log("validateTimeOfDayInput startet");
-
         timeOfDayInputIsValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/.test(timeOfDayInput.value);
-
         if (timeOfDayInputIsValid) {
             timeOfDayInput.style.backgroundColor = '#F1F2F6';
             timeOfDayInput.style.color = '#000000';
@@ -94,14 +90,14 @@
             timeOfDayInput.style.backgroundColor = '#FF0000';
             timeOfDayInput.style.color = '#FFFFFF';
             timeOfDayInputHint.style.display = 'block';
+            checkIfInputsAreValid();
         }
     }
 
     function validateEmailInput() {
         console.log("validateEmailInput startet");
         emailInputIsValid =  (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput.value));
-        if (emailInputIsValid)
-            checkIfInputsAreValid();
+        checkIfInputsAreValid();
     }
 
     function checkIfInputsAreValid() {
@@ -116,7 +112,7 @@
     }
 
     function onSubmitButtonClick() {
-        console.log('Submitted');
+        alert('Submitted');
     }
 
 </script>
@@ -136,20 +132,6 @@
                         selected={reminderDate_value}
                         bind:store
                         {theme} >
-                        <!--button class="datepicker-button">
-                            {#if $store?.hasChosen}
-                                {dayjs($store.selected).format('ddd MMM D, YYYY')}
-                            {:else}
-                                Chosen Date
-                            {/if}
-                        </button-->
-                        <!--button>
-                            {#if $store?.hasChosen}
-                                {dayjs($store.selected).format('ddd MMM D, YYYY')}
-                            {:else}
-                                Pick a Date
-                            {/if}
-                        </button-->
                     </Datepicker>
                     </div>
             </div>
@@ -178,30 +160,14 @@
 </div>
 
 <style>
-    button {
-    }
-
     input {
         background-color: #F1F2F6;
         font-size: 20px;
     }
 
-    .submit-button {
-        width: 100%;
-        height: 80px;
-        color: white;
-        border-radius: 5px;
-        margin-top: -5px;
-        background: #F1F2F6;
-    }
-
-    submit-button[disabled=disabled], submit-button:disabled {
-        background: grey;
-    }
-
-    .submit-button.active {
-        background: #6800ED;
-        cursor: pointer;
+    .event-reminder-head {
+        font-size: 25px;
+        margin-bottom: 30px;
     }
 
     .event-reminder {
@@ -215,11 +181,6 @@
         display: grid;
         grid-template-rows: auto;
         row-gap: 20px;
-    }
-
-    .event-reminder-head {
-        font-size: 25px;
-        margin-bottom: 30px;
     }
 
     .date-setters {
@@ -241,18 +202,6 @@
         width: 200px;
         margin: 0 auto;
         margin-top: 20px;
-    }
-
-    .datepicker-button {
-        border: none;
-    }
-
-    .reminder-element {
-        /*
-        flex: 1;
-        margin-left: 0px;
-
-         */
     }
 
     .email-input-container {
@@ -303,14 +252,9 @@
         flex: 1;
     }
 
-    .reminder-time-switcher {
-
-    }
-
     .reminder-time-switcher input {
         border: none;
         text-align: center;
-        /*padding-top: 30px;*/
         margin-top: 23px;
         width: 100%;
         outline: none;
@@ -328,6 +272,20 @@
         top: -80px;
         width: 120px;
         text-align: center;
+    }
+
+    .submit-button {
+        width: 100%;
+        height: 80px;
+        color: white;
+        border-radius: 5px;
+        margin-top: -5px;
+        background: #F1F2F6;
+    }
+
+    .submit-button.active {
+        background: #6800ED;
+        cursor: pointer;
     }
 
     @media only screen and (max-width: 740px) {
