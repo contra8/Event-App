@@ -10,7 +10,14 @@
     let buttonClicked = false;
     let timeOfDayInput;
     let timeOfDayInputHint;
+    let emailInput;
+    let submitButton;
 
+    let timeOfDayInputIsValid = true;
+    let emailInputIsValid = false;
+    let inputsAreValid = false;
+
+    // Theme for Datepicker
     const theme = {
         calendar: {
             shadow: '0px 0px 0px 0px rgba(1, 1, 1, 1)',
@@ -46,22 +53,13 @@
     });
 
     afterUpdate(() => {
-        console.log("------------");
-        console.log("afterUpdate 1: reminderDate_value = " + reminderDate_value);
-        console.log("afterUpdate 2: $store?.selected = " + $store?.selected);
         if (!buttonClicked) {
             let tmpDate = dayjs($store?.selected);
-            console.log("tmpDate =" + tmpDate);
-            console.log("currentHour = " + dayjs(reminderDate_value).hour());
             tmpDate.hour(dayjs(reminderDate_value).hour());
-            //reminderDate.set(dayjs($store?.selected));
             reminderDate.set(tmpDate);
         }
         else
             buttonClicked = false;
-        //reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
-        //remainingDays = dayjs(reminderDate_value).diff(today, 'day');
-        console.log("afterUpdate 3: reminderDate_value = " + reminderDate_value);
     });
 
     function onClickDecreaseButton() {
@@ -79,58 +77,57 @@
     }
 
     function onTimeOfDayInputChange() {
-        console.log("onTimeOfDayInputChange");
         validateTimeOfDayInput();
     }
 
     function validateTimeOfDayInput() {
-        console.log(timeOfDayInput.value);
-        let timeOfDayIsValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/.test(timeOfDayInput.value);
+        console.log("validateTimeOfDayInput startet");
 
-        if (timeOfDayIsValid) {
-            //timeOfDayInput.style.backgroundColor = '#bfa';
+        timeOfDayInputIsValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])?$/.test(timeOfDayInput.value);
+
+        if (timeOfDayInputIsValid) {
             timeOfDayInput.style.backgroundColor = '#F1F2F6';
             timeOfDayInput.style.color = '#000000';
             timeOfDayInputHint.style.display = 'none';
+            checkIfInputsAreValid();
         } else {
-            //timeOfDayInput.style.backgroundColor = '#fba';
             timeOfDayInput.style.backgroundColor = '#FF0000';
             timeOfDayInput.style.color = '#FFFFFF';
-            console.log("test");
-            timeOfDayInputHint.style.display = 'inline';
+            timeOfDayInputHint.style.display = 'block';
         }
-        return timeOfDayIsValid;
     }
 
     function validateEmailInput() {
-        console.log(timeOfDayInput.value);
-        let emailIsValid = /^([0-1]?[0-9]|3[0-3]):([0-5][0-9])(:[0-5][0-9])?$/.test(timeOfDayInput.value);
-
-        if (emailIsValid) {
-            timeOfDayInput.style.backgroundColor = '#bfa';
-            timeOfDayInput.style.backgroundColor = '#ff000';
-        } else {
-            //timeOfDayInput.style.backgroundColor = '#fba';
-        }
-
-        return emailIsValid;
+        console.log("validateEmailInput startet");
+        emailInputIsValid =  (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInput.value));
+        if (emailInputIsValid)
+            checkIfInputsAreValid();
     }
+
+    function checkIfInputsAreValid() {
+        console.log("checkIfInputsAreValid startet");
+        if (timeOfDayInputIsValid && emailInputIsValid) {
+            submitButton.disabled = false;
+            inputsAreValid = true;
+        } else {
+            submitButton.disabled = true;
+            inputsAreValid = false;
+        }
+    }
+
+    function onSubmitButtonClick() {
+        console.log('Submitted');
+    }
+
 </script>
 
 <div class="event-reminder">
     <div class="event-reminder-head">
-        Set a check back reminder:<!--br />
-        Store date: {$store?.selected}-->
-        <!--br />
-        {eventDate_value}<br /-->
-        <!--Event Date: {eventDate_value}<br />-->
-        <!--br /-->
-        <!--{reminderDate_value}-->
+        Set a check back reminder:
     </div>
     <div class="date-reminder-grid-container">
         <div class="date-setters">
             <div class="date-picker-container reminder-element">
-                <!--InlineCalendar bind:store /-->
                 <div class="date-picker-wrapper">
                     <Datepicker
                         format="DD.MM.YYYY"
@@ -159,7 +156,7 @@
             <div class="reminder-time-switcher reminder-element">
                 <div class="input-container">
                     <input bind:this={timeOfDayInput} on:input={onTimeOfDayInputChange} on:change={onTimeOfDayInputChange} value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
-                    <span bind:this={timeOfDayInputHint} class="time-of-day-format-hint">Zeitformat: hh:mm, z. B. 14:30</span>
+                    <span bind:this={timeOfDayInputHint} class="time-of-day-format-hint">Zeitformat: hh:mm,<br />z. B. 14:30</span>
                 </div>
             </div>
             <div class="reminder-day-switcher reminder-element">
@@ -171,10 +168,10 @@
             </div>
         </div>
         <div class="email-input-container">
-            <input class="email-input" type="text" placeholder="{callForAction}" />
+            <input bind:this={emailInput} on:keypress={validateEmailInput} class="email-input" type="text" placeholder="{callForAction}" />
             <span class="chars-counter">50</span>
         </div>
-        <button class="submit-button">
+        <button bind:this={submitButton} class="submit-button" class:active="{inputsAreValid}" type="button" on:click={onSubmitButtonClick} disabled>
             Submit
         </button>
     </div>
@@ -182,7 +179,6 @@
 
 <style>
     button {
-        cursor: pointer;
     }
 
     input {
@@ -194,9 +190,18 @@
         width: 100%;
         height: 80px;
         color: white;
-        background: #6800ED;
         border-radius: 5px;
         margin-top: -5px;
+        background: #F1F2F6;
+    }
+
+    submit-button[disabled=disabled], submit-button:disabled {
+        background: grey;
+    }
+
+    .submit-button.active {
+        background: #6800ED;
+        cursor: pointer;
     }
 
     .event-reminder {
@@ -319,7 +324,9 @@
         display: none;
         font-size: 14px;
         position: relative;
-        top: -60px;
+        top: -80px;
+        width: 120px;
+        text-align: center;
     }
 
     @media only screen and (max-width: 740px) {
