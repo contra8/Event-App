@@ -66,7 +66,7 @@
         display: inline-block;
         width: 35px;
         height: 25px;
-        content:"";
+        content: "";
         position: relative;
         top: 5px;
         left: 0px;
