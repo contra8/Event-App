@@ -2,12 +2,13 @@
     import { afterUpdate } from 'svelte';
     import dayjs from "dayjs";
     import { Datepicker } from 'svelte-calendar';
-    import { InlineCalendar } from 'svelte-calendar';
     import { eventDate } from '../stores/EventDateStore.js';
     import { reminderDate } from '../stores/ReminderDateStore.js';
 
+    const callForAction = "Enter your email";
     let store;
     let buttonClicked = false;
+    let timeOfDayInput;
 
     const theme = {
         calendar: {
@@ -19,7 +20,7 @@
                 },
                 text: {
                     primary: '#000000',
-                    highlight: '#FFFFF'
+                    highlight: '#FFFFFF'
                 },
             },
         }
@@ -47,8 +48,14 @@
         console.log("------------");
         console.log("afterUpdate 1: reminderDate_value = " + reminderDate_value);
         console.log("afterUpdate 2: $store?.selected = " + $store?.selected);
-        if (!buttonClicked)
-            reminderDate.set(dayjs($store?.selected));
+        if (!buttonClicked) {
+            let tmpDate = dayjs($store?.selected);
+            console.log("tmpDate =" + tmpDate);
+            console.log("currentHour = " + dayjs(reminderDate_value).hour());
+            tmpDate.hour(dayjs(reminderDate_value).hour());
+            //reminderDate.set(dayjs($store?.selected));
+            reminderDate.set(tmpDate);
+        }
         else
             buttonClicked = false;
         //reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
@@ -69,17 +76,53 @@
         if (dayjs(eventDate_value).diff(newDateOfRemindingCandidate, 'day'))
             reminderDate.set(dayjs(reminderDate_value).add(1, 'day'));
     }
+
+    function onTimeOfDayInputChange() {
+        console.log("onTimeOfDayInputChange");
+        validateTimeOfDayInput();
+    }
+
+    function validateTimeOfDayInput() {
+        console.log(timeOfDayInput.value);
+        let timeOfDayIsValid = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])/.test(timeOfDayInput.value);
+
+        if (timeOfDayIsValid) {
+            //timeOfDayInput.style.backgroundColor = '#bfa';
+            timeOfDayInput.style.backgroundColor = '#F1F2F6';
+            timeOfDayInput.style.color = '#000000';
+        } else {
+            //timeOfDayInput.style.backgroundColor = '#fba';
+            timeOfDayInput.style.backgroundColor = '#FF0000';
+            timeOfDayInput.style.color = '#FFFFFF';
+            console.log("test");
+        }
+        return timeOfDayIsValid;
+    }
+
+    function validateEmailInput() {
+        console.log(timeOfDayInput.value);
+        let emailIsValid = /^([0-1]?[0-9]|3[0-3]):([0-5][0-9])(:[0-5][0-9])?$/.test(timeOfDayInput.value);
+
+        if (emailIsValid) {
+            timeOfDayInput.style.backgroundColor = '#bfa';
+            timeOfDayInput.style.backgroundColor = '#ff000';
+        } else {
+            //timeOfDayInput.style.backgroundColor = '#fba';
+        }
+
+        return emailIsValid;
+    }
 </script>
 
 <div class="event-reminder">
     <div class="event-reminder-head">
         Set a check back reminder:<!--br />
         Store date: {$store?.selected}-->
-        <br />
-        {eventDate_value}<br />
+        <!--br />
+        {eventDate_value}<br /-->
         <!--Event Date: {eventDate_value}<br />-->
         <!--br /-->
-        {reminderDate_value}
+        <!--{reminderDate_value}-->
     </div>
     <div class="date-reminder-grid-container">
         <div class="date-setters">
@@ -92,12 +135,27 @@
                         end={dayjs(eventDate_value).subtract(1, 'day')}
                         selected={reminderDate_value}
                         bind:store
-                        {theme} />
+                        {theme} >
+                        <!--button class="datepicker-button">
+                            {#if $store?.hasChosen}
+                                {dayjs($store.selected).format('ddd MMM D, YYYY')}
+                            {:else}
+                                Chosen Date
+                            {/if}
+                        </button-->
+                        <!--button>
+                            {#if $store?.hasChosen}
+                                {dayjs($store.selected).format('ddd MMM D, YYYY')}
+                            {:else}
+                                Pick a Date
+                            {/if}
+                        </button-->
+                    </Datepicker>
                     </div>
             </div>
             <div class="reminder-time-switcher reminder-element">
                 <div class="input-container">
-                    <input value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
+                    <input bind:this={timeOfDayInput} on:input={onTimeOfDayInputChange} on:change={onTimeOfDayInputChange} value="{dayjs(reminderDate_value).toDate().getHours()}:{reminderDate_value.toString().split(':')[1]}">
                 </div>
             </div>
             <div class="reminder-day-switcher reminder-element">
@@ -109,7 +167,7 @@
             </div>
         </div>
         <div class="email-input-container">
-            <input class="email-input" type="text" value="Enter your email" />
+            <input class="email-input" type="text" placeholder="{callForAction}" />
             <span class="chars-counter">50</span>
         </div>
         <button class="submit-button">
@@ -162,17 +220,22 @@
         width: 100%;
         height: 80px;
         margin: 0px;
-        gap: 10px;
+        gap: 20px;
     }
 
     .date-picker-container {
         height: 80px;
+        flex: 1;
     }
 
     .date-picker-wrapper {
         width: 200px;
         margin: 0 auto;
         margin-top: 20px;
+    }
+
+    .datepicker-button {
+        border: none;
     }
 
     .reminder-element {
@@ -227,10 +290,11 @@
 
     .reminder-day-switcher {
         margin: 0 auto;
+        flex: 1;
     }
 
     .reminder-time-switcher {
-        flex: 1;
+
     }
 
     .reminder-time-switcher input {
@@ -238,6 +302,8 @@
         text-align: center;
         /*padding-top: 30px;*/
         margin-top: 23px;
+        width: 100%;
+        outline: none;
     }
 
     .input-container {
